@@ -5,7 +5,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var productableView: UITableView!
     // MARK: Variables
     var productArray:[ProductModel]=[]
-    //var ratingArray:[Rating]=[]
+    var ratingArray:[Rating]=[]
     //MARK:VC LifeCycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
