@@ -5,7 +5,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var productableView: UITableView!
     // MARK: Variables
     var productArray:[ProductModel]=[]
-    var ratingArray:[Rating]=[]
+    //var ratingArray:[Rating]=[]
     //MARK:VC LifeCycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +86,15 @@ extension ViewController:UITableViewDataSource{
         productCell.ratingLabel.text = String("Rating:\(productArray[indexPath.row].rate)")
         return productCell
     }
-    func tableView(_tableView:UITableView,didSelectRowsAt indexPath:IndexPath){
-        guard let secVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController")as?SecondViewController else{
+    
+        }
+//MARK: Delegate Protocol
+  extension ViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        300
+    }
+      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let secVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController else{
             return
         }
         secVC.titleContainer = ("title:\(productArray[indexPath.row].title)")
@@ -97,13 +104,7 @@ extension ViewController:UITableViewDataSource{
         self.navigationController?.pushViewController(secVC, animated: true)
         
             }
-        }
-//MARK: Delegate Protocol
-  extension ViewController:UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        300
     }
-}
 //MARK:UIImage
 extension UIImageView{
     func downloadImage(from url:URL){
